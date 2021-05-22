@@ -16,7 +16,9 @@ var _ comparators.Comparator = Json{}
 
 func (Json) Compare(expected, got io.Reader) error {
 	expectedR := json.NewDecoder(expected)
+	expectedR.UseNumber()
 	gotR := json.NewDecoder(got)
+	gotR.UseNumber()
 
 	for {
 		var expectedData, gotData interface{}
